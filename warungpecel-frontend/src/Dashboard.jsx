@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import api from "./axiosConfig"; // Gunakan instance axios kita untuk logout
 import Employee from "./Employee"; // Import komponen Karyawan
+import Finance from './Finance'; // 1. Tambahkan import ini
 import { useState } from "react";
 
 export default function Dashboard() {
@@ -31,7 +32,7 @@ export default function Dashboard() {
         <ul style={{ listStyle: "none", padding: 0 }}>
           {/* Menu Keuangan bisa dilihat semua role (sementara) */}
           <li style={{ margin: "10px 0", cursor: "pointer", color: activeMenu === "keuangan" ? "yellow" : "white" }} onClick={() => setActiveMenu("keuangan")}>
-            💰 Keuangan (Segera)
+            💰 Keuangan
           </li>
 
           {/* Menu Karyawan HANYA dirender jika role adalah admin */}
@@ -49,7 +50,8 @@ export default function Dashboard() {
       {/* Konten Kanan */}
       <div style={{ flex: 1, padding: "20px", background: "#f4f4f4" }}>
         {activeMenu === "karyawan" && user?.role === "admin" && <Employee />}
-        {activeMenu === "keuangan" && <h3>Halaman Keuangan Belum Dibuat</h3>}
+        {/* 2. Render komponen Finance saat menu keuangan aktif */}
+        {activeMenu === 'keuangan' && <Finance />}
       </div>
     </div>
   );
